@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attitude Bio Pro</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #111;
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    background: black;
+    padding: 20px;
+}
+
+/* Search */
+input {
+    padding: 10px;
+    width: 80%;
+    margin: 20px;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+/* Bio */
+.bio {
+    background: #222;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.bio:hover {
+    background: blue;
+    color: black;
+}
+
+/* Ads */
+.ad {
+    background: gray;
+    margin: 20px;
+    padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🔥stylish attitude bio 🔥</h1>
+
+<!-- Ads Top -->
+<div class="ad">Your Ad Here</div>
+
+<input type="text" id="search" placeholder="Search bio..." onkeyup="searchBio()">
+
+<div>
+    <button class="btn" onclick="showAll()">All</button>
+    <button class="btn" onclick="filter('attitude')">Attitude</button>
+    <button class="btn" onclick="filter('love')">Love</button>
+    <button class="btn" onclick="filter('sad')">Sad</button>
+</div>
+
+<div id="bioList"></div>
+
+<!-- Ads Bottom -->
+<div class="ad">Your Ad Here</div>
+
+<script>
+let bios = [
+{text:"😎 Born to stand out", type:"attitude"},
+{text:"🔥 I make my own rules", type:"attitude"},
+{text:"💯 Attitude is everything", type:"attitude"},
+{text:"👑 King of my life", type:"attitude"},
+{text:"🖤 Love is pain", type:"sad"},
+{text:"😔 Broken but strong", type:"sad"},
+{text:"❤️ Love forever", type:"love"},
+{text:"💖 You are my world", type:"love"}
+];
+
+// make 100+
+bios = bios.concat(bios, bios, bios);
+
+let container = document.getElementById("bioList");
+
+function display(list) {
+    container.innerHTML = "";
+    list.forEach(bio => {
+        let div = document.createElement("div");
+        div.className = "bio";
+        div.innerText = bio.text;
+
+        div.onclick = function() {
+            navigator.clipboard.writeText(bio.text);
+            alert("Copied!");
+        }
+
+        container.appendChild(div);
+    });
+}
+
+function searchBio() {
+    let val = document.getElementById("search").value.toLowerCase();
+    let filtered = bios.filter(b => b.text.toLowerCase().includes(val));
+    display(filtered);
+}
+
+function filter(type) {
+    let filtered = bios.filter(b => b.type === type);
+    display(filtered);
+}
+
+function showAll() {
+    display(bios);
+}
+
+display(bios);
+</script>
+<dialog
+</body>
+</html>
